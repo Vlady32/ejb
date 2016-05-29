@@ -87,7 +87,7 @@ public class SessionController implements Serializable {
      * 
      * @return status of user.
      */
-    public static String getUserType() {
+    public String getUserType() {
         final HttpSession session = SessionController.getSession();
         if (session != null) {
             return session.getAttribute(Constants.ATTRIBUTE_NAME_TYPE).toString().trim();

@@ -15,6 +15,7 @@ public class Constants {
     public static final String ATTRIBUTE_NAME_LOGIN     = "login";
     public static final String ATTRIBUTE_NAME_TYPE      = "type";
     public static final String ATTRIBUTE_LINK_TYPE      = "link";
+    public static final String ATTRIBUTE_TYPE_USER      = "type_user";
     public static final String ATTRIBUTE_PAGE_TYPE      = "page";
 
     public static final String DEFAULT_PATH_NO_IMAGE    = "C:\\photos\\no_picture.png";

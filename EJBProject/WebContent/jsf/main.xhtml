@@ -25,6 +25,7 @@
       				<ui:repeat var="item" value="#{subBean.listItemsMenu}" varStatus="point">
       					<p><h:commandLink value="#{item}" action="#{subBean.determineAction}">
       						<f:param name="link" value="#{point.index}"/>
+      						<f:param name="type_user" value="#{sessionInformation.userType}"/>
       					</h:commandLink></p>
       				</ui:repeat>
 				</h:form>

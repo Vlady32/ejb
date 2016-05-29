@@ -35,13 +35,13 @@ public class SubsidiaryController implements Serializable {
         listItemsMenu = new ArrayList<String>();
         final Locale currentLocale = new SessionController().getCurrentLocale();
         final MessageManager messageManager = new MessageManager(currentLocale);
-        if (SessionController.getUserType().equals(Constants.TYPE_ADMIN)) {
+        if (new SessionController().getUserType().equals(Constants.TYPE_ADMIN)) {
             listItemsMenu.add(messageManager.getProperty(Constants.MESSAGE_MENU_VIEWING));
             listItemsMenu.add(messageManager.getProperty(Constants.MESSAGE_MENU_ADDING));
             listItemsMenu.add(messageManager.getProperty(Constants.MESSAGE_MENU_EDITING));
             listItemsMenu.add(messageManager.getProperty(Constants.MESSAGE_MENU_SEARCHING));
             listItemsMenu.add(messageManager.getProperty(Constants.MESSAGE_MENU_CONTROL));
-        } else if (SessionController.getUserType().equals(Constants.TYPE_USER)) {
+        } else if (new SessionController().getUserType().equals(Constants.TYPE_USER)) {
             listItemsMenu.add(messageManager.getProperty(Constants.MESSAGE_MENU_VIEWING));
             listItemsMenu.add(messageManager.getProperty(Constants.MESSAGE_MENU_SEARCHING));
         }
@@ -55,10 +55,15 @@ public class SubsidiaryController implements Serializable {
         final Map<String, String> mapParameters = FacesContext.getCurrentInstance()
                 .getExternalContext().getRequestParameterMap();
         final int linkType = Integer.parseInt(mapParameters.get(Constants.ATTRIBUTE_LINK_TYPE));
+        final String typeUser = mapParameters.get(Constants.ATTRIBUTE_TYPE_USER);
         if (linkType == Constants.NUMBER_VIEW_PAGE) {
             linkPage = Constants.PAGE_VIEW;
         } else if (linkType == Constants.NUMBER_ADD_PAGE) {
-            linkPage = Constants.PAGE_ADD;
+            if (typeUser.equals(Constants.TYPE_USER)) {
+                linkPage = Constants.PAGE_SEARCH;
+            } else {
+                linkPage = Constants.PAGE_ADD;
+            }
         } else if (linkType == Constants.NUMBER_EDIT_PAGE) {
             linkPage = Constants.PAGE_EDIT;
         } else if (linkType == Constants.NUMBER_SEARCH_PAGE) {
